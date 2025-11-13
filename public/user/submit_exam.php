@@ -1,0 +1,5 @@
+<?php require_once __DIR__ . '/../../config/db.php'; require_login(); if($_SERVER['REQUEST_METHOD'] !== 'POST'){ header('Location: dashboard.php'); exit; } $exam_id = intval($_POST['exam_id']); // collect answers
+$stmt = $pdo->prepare('SELECT id FROM questions WHERE exam_id = ? ORDER BY id'); $stmt->execute([$exam_id]); $questions = $stmt->fetchAll(PDO::FETCH_ASSOC); $total = count($questions); $score = 0; $answers = [];
+foreach($questions as $q){ $qid = $q['id']; $sel = isset($_POST['q_'.$qid]) ? intval($_POST['q_'.$qid]) : -1; $shuffled_correct = isset($_POST['correct_'.$qid]) ? intval($_POST['correct_'.$qid]) : null; if($shuffled_correct !== null && $sel === $shuffled_correct) $score++; $answers[] = ['question_id'=>$qid, 'selected'=>$sel]; }
+$pdo->prepare('INSERT INTO attempts (user_id, exam_id, answers, score, total_questions, started_at, completed_at) VALUES (?,?,?,?,now(),now())')->execute([$_SESSION['user']['id'], $exam_id, json_encode($answers), $score, $total]);
+header('Location: result.php?score='.$score.'&total='.$total); exit; ?>
