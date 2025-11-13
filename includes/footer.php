@@ -1,7 +1,13 @@
-</div> <!-- container -->
-<script src="/assets/vendor/jquery/jquery.min.js"></script>
-<script src="/assets/vendor/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/vendor/chartjs/chart.min.js"></script>
-<script src="/assets/js/main.js"></script>
+    <!-- Core JS Files -->
+    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Optional JS -->
+    <script src="/assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+
+    <!-- Argon JS -->
+    <script src="/assets/js/argon.js"></script>
 </body>
 </html>
